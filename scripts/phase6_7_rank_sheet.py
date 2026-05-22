@@ -658,7 +658,7 @@ def run(
         return ""
 
     top_ids = {tc.id for tc in cfg.channels.top_competitors}
-    top_n = get_setting(cfg, "sheet.top_n_candidates", 20)
+    top_n = get_setting(cfg, "sheet.top_n_candidates", 100)
     sheet_title = get_setting(cfg, "sheet.name", "Sales YT — Topic Research")
     docs_folder_name = get_setting(cfg, "script.google_doc_folder_name", "Sales YT — Scripts")
 
@@ -671,7 +671,7 @@ def run(
     trending_anchors = [a for a in anchors if a.get("recency_bucket") == "trending"]
     evergreen_anchors = [a for a in anchors if a.get("recency_bucket") != "trending"]
 
-    # Each tab targets top_n // 2 topics (default 100 each).
+    # Each tab targets top_n // 2 topics (default 50 each — 100 total across both tabs).
     # If one bucket has fewer candidates than the target, the other doesn't compensate —
     # both tabs are capped independently so counts stay as equal as the data allows.
     per_tab = top_n // 2

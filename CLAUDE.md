@@ -36,12 +36,11 @@ When I say "let's run the research" or `/research`:
 2. **Check competitor channels.** Read `config/channels.yaml`. If `channels:` is empty or older than 30 days, run channel discovery (see `references/methodology/topic-research-pipeline.md`, Phase 1).
 3. **Curate top 10 primary competitors.** If `top_competitors:` is empty or older than 60 days, run competitor curation (see `references/methodology/competitor-curation.md`). Show me the ranked top 10 in chat; wait for confirmation before proceeding on first curation.
 4. **Scrape videos** for each competitor channel (Phase 2). Deep-scrape the top 10, light-scrape the rest. Cache to `output/raw/videos/`.
-5. **Score performance** — views/day, outlier score, engagement (Phase 3).
-6. **Cluster topics** by semantic similarity using sentence-transformers locally (Phase 4).
-7. **SEO enrichment** — YouTube autocomplete, Google Trends, related queries (Phase 5).
-8. **Rank candidates** weighted by tier match AND primary competitor status — peer-tier outliers from top-10 competitors score highest because they're most modelable at my channel size (Phase 6).
-9. **Write top 20 to the Google Sheet** across three tabs (Phase 7): Tab 1 "Topics" — 7-column decision view with 10 collapsed angle variants per topic; Tab 2 "Top 10 Competitors" — dashboard; Tab 3 "Details" — hidden, all analyst metadata (used by script-writer). Always replaces; no append mode.
-10. **End with:** "Top 10 candidates are in the sheet: [link]. Reply with the row number to script."
+5. **Score performance** — views/day, outlier score, engagement (Phase 3). No clustering — every video is its own candidate.
+6. **SEO enrichment** — YouTube autocomplete, Google Trends, related queries (Phase 5).
+7. **Rank candidates** weighted by tier match AND primary competitor status — peer-tier outliers from top-10 competitors score highest because they're most modelable at my channel size (Phase 6).
+8. **Write top 100 to the Google Sheet** across three tabs (Phase 7): Tab 1 "Trending Now" — top 50 topics from videos ≤90 days old; Tab 2 "Proven Evergreen" — top 50 topics from videos >90 days old (min 3k views); Tab 3 "Top 10 Competitors" — dashboard. Each topic tab has a 7-column decision view with 10 collapsed angle variants per topic. Always replaces; no append mode.
+9. **End with:** "Top 50 trending + 50 evergreen candidates are in the sheet: [link]. Reply with the tab and row number to script."
 
 ### Stage 2 — Auto-triggered script generation (will become the `script-writer` skill)
 

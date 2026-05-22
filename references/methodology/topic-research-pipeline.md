@@ -192,7 +192,7 @@ composite_score = (
 )
 ```
 
-Sort all candidates by `composite_score` descending. Take top `sheet.top_n_candidates` (default 20).
+Sort all candidates by `composite_score` descending. Take top `sheet.top_n_candidates` (default 100), split evenly: top 50 trending (≤90 days) and top 50 evergreen (>90 days).
 
 ### Generate per-candidate fields
 - **`suggested_title`** — single LLM call (Claude API) that takes:
@@ -214,10 +214,15 @@ Sort all candidates by `composite_score` descending. Take top `sheet.top_n_candi
 ## Phase 7 — Sheet output
 
 Write to the Google Sheet specified by `target_sheet_id`. The Sheet has **three tabs**:
+- **Tab 1: "Trending Now"** — top 50 topics from videos ≤90 days old
+- **Tab 2: "Proven Evergreen"** — top 50 topics from videos >90 days old (min 3k views)
+- **Tab 3: "Top 10 Competitors"** — competitor dashboard (unchanged each run unless recuration runs)
 
-### Tab 1: "Topics" — main decision view
+Each topic tab has the same 7-column structure. Always replaces — no append mode.
 
-7 columns, one row per topic (top 20 candidates, sorted by Score descending):
+### Tab 1 & 2: "Trending Now" / "Proven Evergreen" — decision view
+
+7 columns, 50 rows per tab (sorted by Score descending):
 
 | Column | Content |
 |---|---|
@@ -270,23 +275,19 @@ Overwritten on each curation refresh. Schema:
 | Last refreshed | Date |
 | Notes | Free text — user annotations |
 
-### Tab 3: "Details" — hidden analyst metadata
+### Tab 3: "Top 10 Competitors" — competitor dashboard
 
-Hidden by default (tab not visible in the tab bar). One row per topic, in the same order as the Topics tab. Contains all data removed from the main view:
-
-- views/day, engagement %, full autocomplete keyword list, related searches, source publish date, source duration, channel tier, primary competitor flag, source tags, source description excerpt, run timestamp
-
-This tab is the data source for script generation (Stage 2). It is never opened manually during normal use.
+Same schema as described in the Competitor Curation doc. Overwritten on each curation refresh (every 60 days). Not touched during normal research runs unless `--recurate` is passed.
 
 ### Write behavior
 
-**Always replace.** Every run clears all rows in all three tabs and writes fresh. No append mode, no run timestamp filtering. The `output/raw/` cache preserves historical video data locally.
+**Always replace.** Every run clears all rows in both topic tabs (Trending Now + Proven Evergreen) and writes fresh. No append mode. The `output/raw/` cache preserves historical video data locally.
 
 ### After writing
 
 - Print the Sheet URL in chat
-- Print the top 10 Idea + Score rows as a quick text summary
-- End with: **"Top 10 candidates are in the sheet: [link]. Reply with the row number to script."**
+- Print the top 5 Idea + Score rows from each tab as a quick text summary
+- End with: **"Top 50 trending + 50 evergreen candidates are in the sheet: [link]. Reply with the tab and row number to script."**
 
 That message is the handoff to Stage 2.
 
