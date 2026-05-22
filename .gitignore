@@ -1,0 +1,29 @@
+# ── Secrets (never commit) ────────────────────────────────────
+.env
+config/client_secrets.json
+config/token.json
+config/secrets.yaml
+
+# ── Generated output (user-specific, not source) ─────────────
+output/raw/
+output/runs/
+output/transcripts/
+output/current_script.md
+
+# ── Python ───────────────────────────────────────────────────
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# ── macOS ────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Logs / temp ──────────────────────────────────────────────
+*.log
+*.tmp

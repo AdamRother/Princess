@@ -1,0 +1,696 @@
+channels:
+- added: '2026-05-21'
+  id: UCUyDOdBWhC1MCxEjC46d-zw
+  last_scraped: ''
+  name: Alex Hormozi
+  subs: 4200000
+  tier: aspirational
+- added: '2026-05-21'
+  id: UCIP99i3azLdyYRxnUkSLJ7g
+  last_scraped: ''
+  name: Andy Elliott
+  subs: 1030000
+  tier: aspirational
+- added: '2026-05-21'
+  id: UCQ5mWx_XYGRbpcV8zjGhorg
+  last_scraped: ''
+  name: Jeremy Miner
+  subs: 434000
+  tier: aspirational
+- added: '2026-05-21'
+  id: UCLOzkJ9W9fntCGyYfUwMPew
+  last_scraped: ''
+  name: Patrick Dang
+  subs: 375000
+  tier: aspirational
+- added: '2026-05-21'
+  id: UCemqii1eP-fVgijqOqqyFvg
+  last_scraped: ''
+  name: Cole Gordon
+  subs: 42900
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UC8IXO-KhBga2ERbhYw6X96w
+  last_scraped: ''
+  name: Remote Closing Academy
+  subs: 44200
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UC50DMoaZxVftPQ14kLHpVMg
+  last_scraped: ''
+  name: The UK's Most Hated Sales Trainer
+  subs: 36500
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UCCTLE8ILGcShSjtnZsOqGPw
+  last_scraped: ''
+  name: The Science of Scaling
+  subs: 35700
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UCASVhSuXpeiQeqfQ1lXcibg
+  last_scraped: ''
+  name: Sales Scripter
+  subs: 30800
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UCs_8uU8uMqT_Kn_RwQJ1Umg
+  last_scraped: ''
+  name: Freight Broker Frameworks™
+  subs: 21900
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UCjnSH6b7z4zYNqPQP_5CTlA
+  last_scraped: ''
+  name: Connor Murray
+  subs: 21000
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UCTiz-33Xq9E2sImPEBl8bdw
+  last_scraped: ''
+  name: lemlist
+  subs: 18400
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UC5w7PvDYBl_c4Gb0KKNv_Hg
+  last_scraped: ''
+  name: Josh Lyons Sales
+  subs: 13300
+  tier: peer-upper
+- added: '2026-05-21'
+  id: UCN1zhVGOABeY2U6uy0t-PGw
+  last_scraped: ''
+  name: Brian Choi
+  subs: 8620
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCeywcOGMTU--ZNl5pwirqdQ
+  last_scraped: ''
+  name: Total Quality Logistics
+  subs: 4970
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UC2HNRaVYifPSgrkmHhEurWQ
+  last_scraped: ''
+  name: Alexis Mai
+  subs: 4930
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCNqkmEqmNn1OQDNAx0GPUIg
+  last_scraped: ''
+  name: Sellchology Auto Sales Training
+  subs: 4480
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCMLStcmkRfQtR0oFvv2qivQ
+  last_scraped: ''
+  name: Sales Coach Parmod
+  subs: 3020
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCDcxHpFhEPp39phiIPJ8jog
+  last_scraped: ''
+  name: Cash Advance Training
+  subs: 2190
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCIoau4SrhkTeeRoLpmTAkYw
+  last_scraped: ''
+  name: Captains & Coaches
+  subs: 2020
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCZj4hSzE-yRsF37QuPaS8fg
+  last_scraped: ''
+  name: Adam Davies Sales Training
+  subs: 1820
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCIY7sdD-zxOFm2J9_xgwQsQ
+  last_scraped: ''
+  name: 'Saddle Cartel '
+  subs: 1590
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UChtLlzuQxE9o5v-HPUvzeew
+  last_scraped: ''
+  name: The Tech Sales Coach - Dave Elsner & Steven Madick
+  subs: 1160
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCnSFgJd0CrsEdQdO21txR2A
+  last_scraped: ''
+  name: 'Strategy Sprints | B2B Sales '
+  subs: 1100
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCL93CDfMKRqglmU_8ey_YbA
+  last_scraped: ''
+  name: SWISH Sales Coaching
+  subs: 1090
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCeYPoxDlHYA8jMghf-S4MYg
+  last_scraped: ''
+  name: Arthur Moedas
+  subs: 1080
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UCAYYD7M6CsfVhw_TW_CXaog
+  last_scraped: ''
+  name: 'salesman mindset '
+  subs: 1020
+  tier: peer-lower
+- added: '2026-05-21'
+  id: UC_1aNGFmrbImNWxGqVoQqcw
+  last_scraped: ''
+  name: skillsconnectionTV
+  subs: 735
+  tier: emerging
+- added: '2026-05-21'
+  id: UCDdQebaWSoL59lEORnzNTrQ
+  last_scraped: ''
+  name: Remote Closer Mastery
+  subs: 702
+  tier: emerging
+- added: '2026-05-21'
+  id: UCgKVpzYC9Zgp4qmfFdndU3g
+  last_scraped: ''
+  name: Odile Faludi
+  subs: 585
+  tier: emerging
+- added: '2026-05-21'
+  id: UC8XoE9PTl5ieVYM_RbUBXJw
+  last_scraped: ''
+  name: A Step Closer
+  subs: 443
+  tier: emerging
+- added: '2026-05-21'
+  id: UCQ5KterQ429KabyB5NAEKsA
+  last_scraped: ''
+  name: 'Chad Aleo I High Ticket Sales Academy '
+  subs: 413
+  tier: emerging
+- added: '2026-05-21'
+  id: UCFhjxqtqInBcphLhKyKVwXw
+  last_scraped: ''
+  name: Thompson Sales Training
+  subs: 318
+  tier: emerging
+- added: '2026-05-21'
+  id: UC87apT-W4g2hGEhzVScJJLQ
+  last_scraped: ''
+  name: Second Nature AI
+  subs: 242
+  tier: emerging
+- added: '2026-05-21'
+  id: UCrV8cuzV4JQPK0CJKsU3Org
+  last_scraped: ''
+  name: Sales Tips
+  subs: 215
+  tier: emerging
+- added: '2026-05-21'
+  id: UCuPA4vstbOao0WEDXhblD9A
+  last_scraped: ''
+  name: Sales Dad
+  subs: 190
+  tier: emerging
+- added: '2026-05-21'
+  id: UCxjX8pCGtwuPerjpZVHk-wQ
+  last_scraped: ''
+  name: Mark Gambale | High-Ticket Sales Coach
+  subs: 158
+  tier: emerging
+- added: '2026-05-21'
+  id: UCKaRLfVvLpQDkqgT0WEGceQ
+  last_scraped: ''
+  name: Setter Central
+  subs: 119
+  tier: emerging
+- added: '2026-05-21'
+  id: UCuLChCDZ-kWHWDX0XPtF4kg
+  last_scraped: ''
+  name: Liam Skaff | AI Appointment Setting
+  subs: 109
+  tier: emerging
+- added: '2026-05-21'
+  id: UCPHghAy1Afqu40SfyxGSWPw
+  last_scraped: ''
+  name: Ian Cartwright Sales Coaching - Simple Sales Tips
+  subs: 97
+  tier: emerging
+- added: '2026-05-21'
+  id: UCTSSucDWZsiRpKO5bufkqOg
+  last_scraped: ''
+  name: Jeff C. West
+  subs: 94
+  tier: emerging
+- added: '2026-05-21'
+  id: UCFo_tu01KEOPf4c0DVp2_RQ
+  last_scraped: ''
+  name: Brevity
+  subs: 85
+  tier: emerging
+- added: '2026-05-21'
+  id: UCEFRNgaEOblm4tup5xijc0Q
+  last_scraped: ''
+  name: Timeshare Sales Training
+  subs: 83
+  tier: emerging
+- added: '2026-05-21'
+  id: UCsZC1jnCL8HNrN99hX8O5Nw
+  last_scraped: ''
+  name: ROI Mindset
+  subs: 61
+  tier: emerging
+- added: '2026-05-21'
+  id: UCxcsnd94keI2ABNhBOjPFhw
+  last_scraped: ''
+  name: Sales Tips
+  subs: 59
+  tier: emerging
+- added: '2026-05-21'
+  id: UClXgaHC2YgpK2W0SCNNRtpg
+  last_scraped: ''
+  name: Salezzy
+  subs: 58
+  tier: emerging
+- added: '2026-05-21'
+  id: UCRYpShC-EwsseX2-qs7i-bw
+  last_scraped: ''
+  name: Trouver le prospect pour Closer Coach Freelance
+  subs: 47
+  tier: emerging
+- added: '2026-05-21'
+  id: UChx6tA04Wrq9vKZACH---qQ
+  last_scraped: ''
+  name: Coyote Cartel
+  subs: 44
+  tier: emerging
+- added: '2026-05-21'
+  id: UCtfIDnoNd8o963M9yGxi8KA
+  last_scraped: ''
+  name: Sabin - Appointment Setting
+  subs: 41
+  tier: emerging
+- added: '2026-05-21'
+  id: UCKLtOrmirwc4a-kxof6vC2Q
+  last_scraped: ''
+  name: VisdumHQ
+  subs: 39
+  tier: emerging
+- added: '2026-05-21'
+  id: UCkQ4UWk9HMT6GSKE28cHbhQ
+  last_scraped: ''
+  name: Gary Waters - The Protection Academy
+  subs: 39
+  tier: emerging
+- added: '2026-05-21'
+  id: UCIVUohcUZuYP5Y02X0SEQog
+  last_scraped: ''
+  name: Creating Closers Coaching & Consulting
+  subs: 27
+  tier: emerging
+- added: '2026-05-21'
+  id: UCEnsSp3Gh3CVsE9Lly-OKqQ
+  last_scraped: ''
+  name: Tom Butler
+  subs: 24
+  tier: emerging
+- added: '2026-05-21'
+  id: UCIAap6ocBJq-BkLrpcbNUXQ
+  last_scraped: ''
+  name: Email Outreach Company
+  subs: 23
+  tier: emerging
+- added: '2026-05-21'
+  id: UC0LjmBxxdxJvzbvnw3gdr4w
+  last_scraped: ''
+  name: Tanup Sales Tips
+  subs: 22
+  tier: emerging
+- added: '2026-05-21'
+  id: UC6mzsgGGxm5VUYdq7Uv3C4Q
+  last_scraped: ''
+  name: Rob Lally Persuasion
+  subs: 16
+  tier: emerging
+- added: '2026-05-21'
+  id: UCVsgzoO5g3ObUxXStY4s6eA
+  last_scraped: ''
+  name: Tech Sales Tips
+  subs: 15
+  tier: emerging
+- added: '2026-05-21'
+  id: UCnI573VVPWFITkJUXG-9gVw
+  last_scraped: ''
+  name: B2B Sales Simplified
+  subs: 11
+  tier: emerging
+- added: '2026-05-21'
+  id: UC2KXw84NNkNydZ1UXiXE_cw
+  last_scraped: ''
+  name: Sales Coach Pro
+  subs: 10
+  tier: emerging
+- added: '2026-05-21'
+  id: UCuejCyCgaus25htfUKe50vw
+  last_scraped: ''
+  name: 'Sales Talk '
+  subs: 9
+  tier: emerging
+- added: '2026-05-21'
+  id: UC9va8Fiurp56ECPj-uVRuSw
+  last_scraped: ''
+  name: Cold Email Services
+  subs: 7
+  tier: emerging
+- added: '2026-05-21'
+  id: UCu3cgXFsUfXsk1ssgvppzhg
+  last_scraped: ''
+  name: Sonia Sebastian - Sales & Mindset Coach
+  subs: 6
+  tier: emerging
+- added: '2026-05-21'
+  id: UCRHtxJHTkT6-4WhKGyhr8VQ
+  last_scraped: ''
+  name: SalesJitsu
+  subs: 6
+  tier: emerging
+- added: '2026-05-21'
+  id: UCmQtWFsmWAjQOq_uiiqEP2Q
+  last_scraped: ''
+  name: How To Cold Call
+  subs: 4
+  tier: emerging
+- added: '2026-05-21'
+  id: UCLLrwizyPt-3bImdkWvWRHw
+  last_scraped: ''
+  name: Buy. Sell. Invest. One call does it all!
+  subs: 4
+  tier: emerging
+- added: '2026-05-21'
+  id: UCDB5Bb2hvnbcRN-VqODmqew
+  last_scraped: ''
+  name: Tanner Collins
+  subs: 4
+  tier: emerging
+- added: '2026-05-21'
+  id: UCo4YaVe8KhBjjIPY_zqT0sA
+  last_scraped: ''
+  name: 'Elite Sales Mindset '
+  subs: 4
+  tier: emerging
+- added: '2026-05-21'
+  id: UCqAbGy33n-m0VBXN-oIo-Og
+  last_scraped: ''
+  name: Phone Sales Team
+  subs: 3
+  tier: emerging
+- added: '2026-05-21'
+  id: UChzBXdDjLMoxDu8cnbX6l1w
+  last_scraped: ''
+  name: Nick Langeveld
+  subs: 3
+  tier: emerging
+- added: '2026-05-21'
+  id: UC6SZHfO-XnXwFLjLw1dR22w
+  last_scraped: ''
+  name: Robert Kuh | Mind The Gap
+  subs: 2
+  tier: emerging
+- added: '2026-05-21'
+  id: UCiMAD0sqSdvcDc_EocAWmHA
+  last_scraped: ''
+  name: Sales Psychology 101
+  subs: 2
+  tier: emerging
+- added: '2026-05-21'
+  id: UCs2e0o4MhVtiXVNcG_MlZ7Q
+  last_scraped: ''
+  name: Remote Closer Training Life
+  subs: 2
+  tier: emerging
+- added: '2026-05-21'
+  id: UCjqpNJ63wAAWyo1Wd0CgD0Q
+  last_scraped: ''
+  name: Remote Sales Chris
+  subs: 1
+  tier: emerging
+- added: '2026-05-21'
+  id: UC11icAAIjkcHKkPkWSGmaFA
+  last_scraped: ''
+  name: Prospect HQ
+  subs: 1
+  tier: emerging
+- added: '2026-05-21'
+  id: UCY551zD5F8izmGCQE8wBWVA
+  last_scraped: ''
+  name: Sales Tips
+  subs: 1
+  tier: emerging
+- added: '2026-05-21'
+  id: UC0rfs9Q5z1cPqP_xWlxqTbw
+  last_scraped: ''
+  name: Remote Closing Academy Reviews
+  subs: 1
+  tier: emerging
+- added: '2026-05-21'
+  id: UCw3hhO4DdmPbentWcFn_2Og
+  last_scraped: ''
+  name: Close Call Streaming
+  subs: 0
+  tier: emerging
+excluded:
+- UCrR-9qug_zHoiBBGTXGP2Hw
+- UCI9DUIgtRGHNH_HmSTcfUbA
+- UCBf1VE1YRhg8DQwO4krwCiw
+- UCVH-JPDuoBUO_CCfASplB0w
+- UCZ2MjZGQdQX89dNDzWDvryA
+- UCUR8kGbNVSurEsK2z71lS3Q
+- UCQHtR-l_hz7BiUVI3yqIVfQ
+- UC8ndPiR75vRIZhfvXQrFWGA
+- UCmBIXsBQOHANP9P52umj_3A
+- UClz_yqK9vMF72xsCLwLwSQw
+- UCkzenp5E1l0-EskM-X9A6cw
+- UCZ_9nZgBpTRplg_KfN2CySA
+- UCt2HYzE0dKzRl3OdW9pSNlA
+- UCMpfL7J00-InF3t-DW7tKEA
+- UC5EbbWy5mHsBF7ERUTvJeuw
+- UCRfucPopIoU-oyddpc9zPgQ
+- UCJ6c3z_1dgMmaKVEbyWT4dQ
+- UCLKZ20yD2tNMBOkSDZo4FeQ
+- UC7uC7Zg3o1Q15u63vgJy_nA
+- UCDcxHpFhEPp39phiIPJ8jog
+pinned:
+- UCQ5mWx_XYGRbpcV8zjGhorg
+- UC50DMoaZxVftPQ14kLHpVMg
+- UCZMxBf2bL-p3J6wW9eWC2oQ
+- UCN1zhVGOABeY2U6uy0t-PGw
+- UCQB_2J-34GgbuHlKOm0buWA
+- UCIOxG4r00q2U2zqEDtAfD0A
+- UClW9KVbYYTlDD6D5m1oqdwA
+- UCP6nO9kvW7QyuPTOJJHahYA
+- UCIoIgKSN9Y20tAN2fY3-JUA
+top_competitors:
+- composite_score: 0.87
+  curated_at: '2026-05-21'
+  id: UCIP99i3azLdyYRxnUkSLJ7g
+  name: Andy Elliott
+  notes: Manually added — largest sales training channel, very high-energy, direct
+    sales coaching
+  pinned: true
+  rank: 1
+  sub_scores: {}
+  subs: 1030000
+  tier: aspirational
+- composite_score: 0.85
+  curated_at: '2026-05-21'
+  id: UCQ5mWx_XYGRbpcV8zjGhorg
+  name: Jeremy Miner
+  notes: Manually added — NEPQ methodology, call-based selling, highly relevant
+  pinned: true
+  rank: 2
+  sub_scores: {}
+  subs: 434000
+  tier: aspirational
+- composite_score: 0.82
+  curated_at: '2026-05-21'
+  id: UCLOzkJ9W9fntCGyYfUwMPew
+  name: Patrick Dang
+  notes: Manually added — B2B and high-ticket sales coaching, strong overlap
+  pinned: true
+  rank: 3
+  sub_scores: {}
+  subs: 375000
+  tier: aspirational
+- composite_score: 0.79
+  curated_at: '2026-05-21'
+  id: UCemqii1eP-fVgijqOqqyFvg
+  name: Cole Gordon
+  notes: Manually added — Remote Closing Academy founder, core niche
+  pinned: true
+  rank: 4
+  sub_scores: {}
+  subs: 42900
+  tier: peer-upper
+- composite_score: 0.76
+  curated_at: '2026-05-21'
+  id: UC8IXO-KhBga2ERbhYw6X96w
+  name: Remote Closing Academy
+  notes: ''
+  pinned: false
+  rank: 5
+  sub_scores: {}
+  subs: 44200
+  tier: peer-upper
+- composite_score: 0.72
+  curated_at: '2026-05-21'
+  id: UC50DMoaZxVftPQ14kLHpVMg
+  name: The UK's Most Hated Sales Trainer
+  notes: ''
+  pinned: false
+  rank: 6
+  sub_scores: {}
+  subs: 36500
+  tier: peer-upper
+- composite_score: 0.68
+  curated_at: '2026-05-21'
+  id: UCCTLE8ILGcShSjtnZsOqGPw
+  name: The Science of Scaling
+  notes: ''
+  pinned: false
+  rank: 7
+  sub_scores: {}
+  subs: 35700
+  tier: peer-upper
+- composite_score: 0.65
+  curated_at: '2026-05-21'
+  id: UCASVhSuXpeiQeqfQ1lXcibg
+  name: Sales Scripter
+  notes: ''
+  pinned: false
+  rank: 8
+  sub_scores: {}
+  subs: 30800
+  tier: peer-upper
+- composite_score: 0.62
+  curated_at: '2026-05-21'
+  id: UCjnSH6b7z4zYNqPQP_5CTlA
+  name: Connor Murray
+  notes: ''
+  pinned: false
+  rank: 9
+  sub_scores: {}
+  subs: 21000
+  tier: peer-upper
+- composite_score: 0.6
+  curated_at: '2026-05-21'
+  id: UC5w7PvDYBl_c4Gb0KKNv_Hg
+  name: Josh Lyons Sales
+  notes: ''
+  pinned: false
+  rank: 10
+  sub_scores: {}
+  subs: 13300
+  tier: peer-upper
+- composite_score: 0.66
+  curated_at: '2026-05-21'
+  id: UCN1zhVGOABeY2U6uy0t-PGw
+  name: Brian Choi
+  notes: ''
+  pinned: false
+  rank: 11
+  sub_scores: {}
+  subs: 8620
+  tier: peer-lower
+- composite_score: 0.55
+  curated_at: '2026-05-21'
+  id: UC2HNRaVYifPSgrkmHhEurWQ
+  name: Alexis Mai
+  notes: ''
+  pinned: false
+  rank: 12
+  sub_scores: {}
+  subs: 4930
+  tier: peer-lower
+- composite_score: 0.5
+  curated_at: '2026-05-21'
+  id: UCMLStcmkRfQtR0oFvv2qivQ
+  name: Sales Coach Parmod
+  notes: ''
+  pinned: false
+  rank: 13
+  sub_scores: {}
+  subs: 3020
+  tier: peer-lower
+- composite_score: 0.48
+  curated_at: '2026-05-21'
+  id: UCIoau4SrhkTeeRoLpmTAkYw
+  name: Captains & Coaches
+  notes: ''
+  pinned: false
+  rank: 14
+  sub_scores: {}
+  subs: 2020
+  tier: peer-lower
+- composite_score: 0.47
+  curated_at: '2026-05-21'
+  id: UCZj4hSzE-yRsF37QuPaS8fg
+  name: Adam Davies Sales Training
+  notes: ''
+  pinned: false
+  rank: 15
+  sub_scores: {}
+  subs: 1820
+  tier: peer-lower
+- composite_score: 0.45
+  curated_at: '2026-05-21'
+  id: UCL93CDfMKRqglmU_8ey_YbA
+  name: SWISH Sales Coaching
+  notes: ''
+  pinned: false
+  rank: 16
+  sub_scores: {}
+  subs: 1090
+  tier: peer-lower
+- composite_score: 0.44
+  curated_at: '2026-05-21'
+  id: UCnSFgJd0CrsEdQdO21txR2A
+  name: Strategy Sprints | B2B Sales
+  notes: ''
+  pinned: false
+  rank: 17
+  sub_scores: {}
+  subs: 1100
+  tier: peer-lower
+- composite_score: 0.43
+  curated_at: '2026-05-21'
+  id: UChtLlzuQxE9o5v-HPUvzeew
+  name: The Tech Sales Coach
+  notes: ''
+  pinned: false
+  rank: 18
+  sub_scores: {}
+  subs: 1160
+  tier: peer-lower
+- composite_score: 0.42
+  curated_at: '2026-05-21'
+  id: UCAYYD7M6CsfVhw_TW_CXaog
+  name: salesman mindset
+  notes: ''
+  pinned: false
+  rank: 19
+  sub_scores: {}
+  subs: 1020
+  tier: peer-lower
+- composite_score: 0.47
+  curated_at: '2026-05-21'
+  id: UCQ5KterQ429KabyB5NAEKsA
+  name: Chad Aleo | High Ticket Sales Academy
+  notes: ''
+  pinned: false
+  rank: 20
+  sub_scores: {}
+  subs: 413
+  tier: emerging

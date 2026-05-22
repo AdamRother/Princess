@@ -1,0 +1,14 @@
+python-dotenv>=1.0.0
+google-api-python-client>=2.100.0
+google-auth>=2.23.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.2.0
+gspread>=6.0.0
+yt-dlp>=2024.1.0
+pytrends>=4.9.0
+sentence-transformers>=2.7.0
+scikit-learn>=1.4.0
+pandas>=2.1.0
+numpy>=1.26.0
+pyyaml>=6.0.1
+requests>=2.31.0

@@ -1,0 +1,137 @@
+# === Competitor curation (Phase 1.5) ===
+# Picks the top N primary competitors from discovered channels.
+# These get deep-scraped and weighted higher in topic ranking.
+competitors:
+  top_n: 20
+  recuration_days: 60                # auto re-curate every N days
+  primary_competitor_boost: 1.25     # multiplier on composite_score for topics from top N
+
+  # Weights for each scoring dimension (must sum to 1.0)
+  scoring_weights:
+    niche_similarity: 0.25
+    format_match: 0.20
+    activity: 0.15
+    performance_trajectory: 0.15
+    tier_fit: 0.15
+    engagement_quality: 0.10
+
+# === Scrape depth per competitor type ===
+scrape_depth:
+  primary:                           # top 10 competitors
+    max_videos: 100
+    max_age_months: 12
+  secondary:                         # other discovered channels
+    max_videos: 30
+    max_age_months: 6
+  pinned:                            # user-pinned channels (always deep)
+    max_videos: 100
+    max_age_months: 12
+
+# === Tier subscriber ranges ===
+# Your channel is currently ~600 subs → "peer-lower" tier.
+# Topics from peer-lower channels are most modelable; peer-upper is reach; aspirational is reference.
+tiers:
+  aspirational_min: 100000
+  peer_upper_min: 10000
+  peer_lower_min: 1000
+  emerging_min: 0
+
+# === Performance scoring ===
+scoring:
+  outlier_threshold: 2.0           # views > 2x channel median = breakout candidate
+  min_engagement_rate: 0.02        # 2% (likes + comments) / views
+  age_weight: 0.5                  # weight on log(age_days) for sustained-performer bonus
+
+# === Tier match score (used when ranking candidates) ===
+# Higher = more modelable at my current channel size.
+tier_match_weights:
+  aspirational: 0.3
+  peer_upper: 0.6
+  peer_lower: 1.0
+  emerging: 0.8
+
+# === Video filters ===
+video_filters:
+  min_duration_seconds: 600        # long-form only (10 min+); filters out Shorts and clips
+  max_age_months: 24               # full scraping window — split into tabs at ranking stage
+  trending_max_days: 90            # videos ≤ 90 days old → "Trending Now" tab
+  evergreen_min_days: 90           # videos > 90 days old → "Proven Evergreen" tab
+  evergreen_min_views: 3000        # lowered — more channels needed to fill 100-topic target
+  skip_live_streams: true
+  skip_premieres_without_upload: true
+  min_candidate_views: 1000        # lowered to qualify more candidates across 75 channels
+
+# === Research run config ===
+research:
+  videos_per_channel_max: 100
+  channels_to_track_max: 75
+  seed_queries:
+    # High-ticket / closing track
+    - "high ticket sales"
+    - "high ticket closing"
+    - "high ticket closer"
+    - "remote closing"
+    - "remote sales"
+    - "1 call close"
+    - "commission only sales"
+    - "how to become a closer"
+    - "closer for coaches"
+    - "appointment setting"
+    - "appointment setter training"
+    # Sales coaching / training
+    - "sales coach"
+    - "sales coaching"
+    - "sales training"
+    - "sales tips"
+    - "sales techniques"
+    - "sales course"
+    - "how to sell on a call"
+    - "sales role play"
+    # Call skills
+    - "sales call framework"
+    - "discovery call framework"
+    - "phone sales"
+    - "closing sales calls"
+    # Objections & mindset
+    - "objection handling"
+    - "how to handle objections"
+    - "sales mindset"
+    - "sales psychology"
+    - "sales persuasion"
+    # Prospecting & outreach
+    - "b2b sales tips"
+    - "cold calling tips"
+    - "cold email outreach"
+    - "lead generation sales"
+    - "how to prospect clients"
+    # Notable figures / channels (seed discovery)
+    - "Cole Gordon sales"
+    - "closer cartel"
+    - "remote closer income"
+
+# === Topic clustering ===
+clustering:
+  embedding_model: "all-MiniLM-L6-v2"    # local, free, fast
+  dbscan_eps: 0.4
+  dbscan_min_samples: 2
+
+# === SEO enrichment ===
+seo:
+  autocomplete_locale: "en"
+  trends_region: ""                # empty = worldwide; "US" = US-only
+  trends_lookback_months: 12
+
+# === Sheet output ===
+sheet:
+  name: "Sales YT — Topic Research"
+  top_n_candidates: 100            # 50 per tab (Trending Now + Proven Evergreen)
+  overwrite_on_each_run: false
+
+# === Script generation ===
+script:
+  target_min_minutes: 10
+  target_max_minutes: 60
+  default_target_minutes: 30
+  words_per_minute: 150            # average spoken pace
+  reference_videos_per_topic: 5
+  google_doc_folder_name: "Sales YT — Scripts"
