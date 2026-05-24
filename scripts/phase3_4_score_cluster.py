@@ -10,14 +10,18 @@ from __future__ import annotations
 
 import argparse
 import math
+import os
 import re
 import statistics
+import subprocess
+import tempfile
 from datetime import datetime
 
 from utils.config import Config, load_config, get_setting
 from utils.cache import (
     list_cached_channel_ids, load_video_cache, load_channel_meta,
     write_run_artifact, get_latest_run_artifact, generate_run_id,
+    update_channel_performance, update_video_fields,
 )
 
 # Keyword set for niche relevance filtering — video titles must contain at least one.
@@ -86,6 +90,99 @@ def _is_english(title: str) -> bool:
         return False
     ascii_chars = sum(1 for c in title if ord(c) < 128 and c.isprintable())
     return ascii_chars / len(title) >= 0.75
+
+
+def _parse_vtt(vtt_text: str) -> str:
+    """Strip VTT metadata and timestamps; return clean plain text."""
+    lines = vtt_text.split("\n")
+    text_lines = []
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith(("WEBVTT", "Kind:", "Language:", "NOTE")):
+            continue
+        if "-->" in line:
+            continue
+        if re.match(r"^\d+$", line):
+            continue
+        line = re.sub(r"<[^>]+>", "", line)
+        if line:
+            text_lines.append(line)
+    deduped = []
+    for line in text_lines:
+        if not deduped or line != deduped[-1]:
+            deduped.append(line)
+    return " ".join(deduped)
+
+
+def _fetch_transcript(video_id: str) -> str | None:
+    """Fetch auto-generated transcript via yt-dlp. Returns plain text or None."""
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            subprocess.run(
+                [
+                    "yt-dlp",
+                    "--write-auto-sub",
+                    "--sub-lang", "en",
+                    "--sub-format", "vtt",
+                    "--skip-download",
+                    "--no-warnings",
+                    "--quiet",
+                    "-o", os.path.join(tmpdir, "%(id)s.%(ext)s"),
+                    f"https://www.youtube.com/watch?v={video_id}",
+                ],
+                capture_output=True, text=True, timeout=45,
+            )
+            vtt_path = os.path.join(tmpdir, f"{video_id}.en.vtt")
+            if not os.path.exists(vtt_path):
+                return None
+            with open(vtt_path, encoding="utf-8") as f:
+                text = _parse_vtt(f.read())
+            return text or None
+    except Exception:
+        return None
+
+
+def _enrich_transcripts(candidates: list[dict], max_fetch: int = 60) -> None:
+    """
+    Fetch and store transcripts for candidate videos that don't have one yet.
+    Writes transcript text directly into the channel cache files.
+    Limits to max_fetch per run to keep runtime reasonable.
+    """
+    needs_transcript = [
+        c for c in candidates
+        if not c.get("transcript")
+    ][:max_fetch]
+
+    if not needs_transcript:
+        return
+
+    print(f"\n  [Transcripts] Fetching for {len(needs_transcript)} candidates (up to {max_fetch})...")
+    fetched = 0
+    for c in needs_transcript:
+        video_id = c.get("id", "")
+        channel_id = c.get("channel_id", "")
+        if not video_id or not channel_id:
+            continue
+        print(f"    {c.get('title', video_id)[:60]}...", end=" ", flush=True)
+        transcript = _fetch_transcript(video_id)
+        if transcript:
+            update_video_fields(channel_id, video_id, {
+                "transcript": transcript,
+                "transcript_fetched_at": datetime.now().isoformat(),
+            })
+            c["transcript"] = transcript
+            fetched += 1
+            print(f"ok ({len(transcript):,} chars)")
+        else:
+            update_video_fields(channel_id, video_id, {
+                "transcript": None,
+                "transcript_fetched_at": datetime.now().isoformat(),
+            })
+            print("no captions")
+
+    print(f"  Transcripts: {fetched}/{len(needs_transcript)} fetched.")
 
 
 def _clean_topic_name(raw_title: str) -> str:
@@ -221,12 +318,21 @@ def run(cfg: Config, run_id: str | None = None, upstream=None) -> list[dict]:
         meta = load_channel_meta(channel_id)
         channel_name = meta.get("title", channel_id) if meta else channel_id
 
+        scored_all = []
         for v in videos:
             scored = _score_video(v, median_views, median_vpd, outlier_threshold, min_absolute_views)
             scored["channel_id"] = channel_id
             scored["channel_name"] = channel_name
             scored["primary_competitor"] = channel_id in top_ids
+            # Carry through transcript + status from cache so candidates have them
+            scored["transcript"] = v.get("transcript")
+            scored["status"] = v.get("status", "available")
+            scored_all.append(scored)
 
+        # Write performance scores back into the channel cache file
+        update_channel_performance(channel_id, scored_all)
+
+        for scored in scored_all:
             title = scored.get("title", "")
             days = scored.get("days_since_publish", 999)
             views = scored.get("view_count", 0)
@@ -239,7 +345,8 @@ def run(cfg: Config, run_id: str | None = None, upstream=None) -> list[dict]:
             if ((is_trending or is_evergreen)
                     and scored.get("duration_seconds", 0) >= 600
                     and _is_english(title)
-                    and _is_niche_relevant(title)):
+                    and _is_niche_relevant(title)
+                    and scored.get("status") != "scripted"):
                 scored["recency_bucket"] = "trending" if is_trending else "evergreen"
                 all_candidates.append(scored)
 
@@ -248,6 +355,10 @@ def run(cfg: Config, run_id: str | None = None, upstream=None) -> list[dict]:
         return []
 
     print(f"  Found {len(all_candidates)} candidate videos across {len(channel_ids)} channels")
+
+    # Fetch and store transcripts for candidates that don't have one yet.
+    # Stored directly in the channel cache files — available to script-writer offline.
+    _enrich_transcripts(all_candidates)
 
     # Deduplicate by video ID only — keep every unique video as its own topic.
     # Each video has a distinct angle, hook, or problem framing worth modeling separately.

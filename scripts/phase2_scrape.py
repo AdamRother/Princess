@@ -46,9 +46,11 @@ def _scrape_channel(
     """
     cutoff = datetime.now() - timedelta(days=max_age_months * 30)
 
-    # Load existing cache
+    # Load existing cache; drop scripted videos — they've been used and will be
+    # replaced by fresh content from this run's new scrape.
     existing_cache = load_video_cache(channel_id) or {}
-    cached_videos: list[dict] = existing_cache.get("videos", [])
+    all_cached: list[dict] = existing_cache.get("videos", [])
+    cached_videos = [v for v in all_cached if v.get("status") != "scripted"]
     cached_ids: set[str] = {v["id"] for v in cached_videos}
 
     # Ensure uploads playlist ID is available
@@ -101,6 +103,11 @@ def _scrape_channel(
                 "tags": d.tags,
                 "thumbnail_url": d.thumbnail_url,
                 "scraped_at": datetime.now().isoformat(),
+                # Enrichment fields — populated by Phase 3
+                "transcript": None,
+                "transcript_fetched_at": None,
+                "performance": {},
+                "status": "available",
             })
 
     # Refresh stats on all previously-cached videos (1 quota unit each)
