@@ -21,7 +21,7 @@ from utils.config import Config, load_config, get_setting
 from utils.cache import (
     list_cached_channel_ids, load_video_cache, load_channel_meta,
     write_run_artifact, get_latest_run_artifact, generate_run_id,
-    update_channel_performance, update_video_fields,
+    write_transcript,
 )
 
 # Keyword set for niche relevance filtering — video titles must contain at least one.
@@ -144,45 +144,36 @@ def _fetch_transcript(video_id: str) -> str | None:
         return None
 
 
-def _enrich_transcripts(candidates: list[dict], max_fetch: int = 60) -> None:
+def _enrich_transcripts(candidates: list[dict]) -> None:
     """
-    Fetch and store transcripts for candidate videos that don't have one yet.
-    Writes transcript text directly into the channel cache files.
-    Limits to max_fetch per run to keep runtime reasonable.
-    """
-    needs_transcript = [
-        c for c in candidates
-        if not c.get("transcript")
-    ][:max_fetch]
+    Fetch transcripts for all candidates and save each as
+    output/raw/transcripts/{video_id}.txt.
 
-    if not needs_transcript:
+    The transcripts folder is wiped at the start of Phase 2, so every
+    research run produces a fresh set of transcript files matching the
+    current candidate pool (up to 100 videos: 50 trending + 50 evergreen).
+    """
+    if not candidates:
         return
 
-    print(f"\n  [Transcripts] Fetching for {len(needs_transcript)} candidates (up to {max_fetch})...")
+    print(f"\n  [Transcripts] Fetching for {len(candidates)} candidates...")
     fetched = 0
-    for c in needs_transcript:
+    for c in candidates:
         video_id = c.get("id", "")
-        channel_id = c.get("channel_id", "")
-        if not video_id or not channel_id:
+        if not video_id:
             continue
-        print(f"    {c.get('title', video_id)[:60]}...", end=" ", flush=True)
+        print(f"    {c.get('title', video_id)[:65]}...", end=" ", flush=True)
         transcript = _fetch_transcript(video_id)
         if transcript:
-            update_video_fields(channel_id, video_id, {
-                "transcript": transcript,
-                "transcript_fetched_at": datetime.now().isoformat(),
-            })
-            c["transcript"] = transcript
+            write_transcript(video_id, transcript)
+            c["has_transcript"] = True
             fetched += 1
             print(f"ok ({len(transcript):,} chars)")
         else:
-            update_video_fields(channel_id, video_id, {
-                "transcript": None,
-                "transcript_fetched_at": datetime.now().isoformat(),
-            })
+            c["has_transcript"] = False
             print("no captions")
 
-    print(f"  Transcripts: {fetched}/{len(needs_transcript)} fetched.")
+    print(f"  Transcripts: {fetched}/{len(candidates)} saved to output/raw/transcripts/")
 
 
 def _clean_topic_name(raw_title: str) -> str:
@@ -318,21 +309,12 @@ def run(cfg: Config, run_id: str | None = None, upstream=None) -> list[dict]:
         meta = load_channel_meta(channel_id)
         channel_name = meta.get("title", channel_id) if meta else channel_id
 
-        scored_all = []
         for v in videos:
             scored = _score_video(v, median_views, median_vpd, outlier_threshold, min_absolute_views)
             scored["channel_id"] = channel_id
             scored["channel_name"] = channel_name
             scored["primary_competitor"] = channel_id in top_ids
-            # Carry through transcript + status from cache so candidates have them
-            scored["transcript"] = v.get("transcript")
-            scored["status"] = v.get("status", "available")
-            scored_all.append(scored)
 
-        # Write performance scores back into the channel cache file
-        update_channel_performance(channel_id, scored_all)
-
-        for scored in scored_all:
             title = scored.get("title", "")
             days = scored.get("days_since_publish", 999)
             views = scored.get("view_count", 0)
@@ -345,8 +327,7 @@ def run(cfg: Config, run_id: str | None = None, upstream=None) -> list[dict]:
             if ((is_trending or is_evergreen)
                     and scored.get("duration_seconds", 0) >= 600
                     and _is_english(title)
-                    and _is_niche_relevant(title)
-                    and scored.get("status") != "scripted"):
+                    and _is_niche_relevant(title)):
                 scored["recency_bucket"] = "trending" if is_trending else "evergreen"
                 all_candidates.append(scored)
 

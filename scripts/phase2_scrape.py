@@ -25,6 +25,16 @@ from utils.cache import (
 )
 
 _RAW_VIDEOS_DIR = Path(__file__).parent.parent / "output" / "raw" / "videos"
+_TRANSCRIPTS_DIR = Path(__file__).parent.parent / "output" / "raw" / "transcripts"
+
+
+def _clear_transcripts() -> None:
+    """Delete all transcript files so this run fetches fresh ones."""
+    if _TRANSCRIPTS_DIR.exists():
+        for f in _TRANSCRIPTS_DIR.glob("*.txt"):
+            f.unlink()
+    _TRANSCRIPTS_DIR.mkdir(parents=True, exist_ok=True)
+    print("  [Phase 2] Transcript cache cleared — fresh transcripts will be fetched in Phase 3.")
 
 
 def _scrape_channel(
@@ -46,11 +56,9 @@ def _scrape_channel(
     """
     cutoff = datetime.now() - timedelta(days=max_age_months * 30)
 
-    # Load existing cache; drop scripted videos — they've been used and will be
-    # replaced by fresh content from this run's new scrape.
+    # Load existing cache
     existing_cache = load_video_cache(channel_id) or {}
-    all_cached: list[dict] = existing_cache.get("videos", [])
-    cached_videos = [v for v in all_cached if v.get("status") != "scripted"]
+    cached_videos: list[dict] = existing_cache.get("videos", [])
     cached_ids: set[str] = {v["id"] for v in cached_videos}
 
     # Ensure uploads playlist ID is available
@@ -103,11 +111,6 @@ def _scrape_channel(
                 "tags": d.tags,
                 "thumbnail_url": d.thumbnail_url,
                 "scraped_at": datetime.now().isoformat(),
-                # Enrichment fields — populated by Phase 3
-                "transcript": None,
-                "transcript_fetched_at": None,
-                "performance": {},
-                "status": "available",
             })
 
     # Refresh stats on all previously-cached videos (1 quota unit each)
@@ -148,6 +151,9 @@ def run(cfg: Config, run_id: str | None = None, upstream=None) -> None:
     if not top_competitors:
         print("[Phase 2] No top competitors found. Run Phase 1.5 first.")
         return
+
+    # Wipe all transcript files — Phase 3 will re-fetch fresh ones for this run's candidates
+    _clear_transcripts()
 
     yt = build_client(cfg.youtube_api_key)
     today = datetime.now().strftime("%Y-%m-%d")
