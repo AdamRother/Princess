@@ -29,17 +29,19 @@ Ask: "Which angle are you going with, or should I pick the strongest one?"
 
 Before writing, do targeted research:
 
-1. Try `yt-dlp` transcript on the source video URL (if available from sheet):
+1. **Read the local transcript file first.** Each research run saves a transcript per candidate video at `output/raw/transcripts/{video_id}.txt` — where `{video_id}` is the `v=` parameter from the source URL (e.g. URL `?v=DrE9HdnMDJs` → file `output/raw/transcripts/DrE9HdnMDJs.txt`). Read this file if it exists. This is how you understand the structure, pacing, and framing of the source video so you can model it — not copy it.
+
+2. **If no local transcript exists**, try yt-dlp as fallback:
 ```
 yt-dlp --write-auto-sub --skip-download --sub-lang en -o "output/transcripts/%(id)s" <url>
 ```
-Note: Most of her videos have no auto-captions. If unavailable, continue.
+Note: Many videos have no auto-captions — if unavailable, continue without.
 
-2. Use YouTube Data API to pull the video's full description — descriptions often contain framework details and key language.
+3. Use YouTube Data API to pull the video's full description — descriptions often contain framework details and key language.
 
-3. Search for any public docs, Skool posts, or linked resources in the video description that contain her framework content.
+4. Search for any public docs, Skool posts, or linked resources in the video description that contain her framework content.
 
-4. If the topic maps to one of her named frameworks (Pain Discovery Framework, Motivation Matrix, The Unsell), pull those details from `context/voice-and-tone.md` before writing — these are the frameworks the script should teach.
+5. If the topic maps to one of her named frameworks (Pain Discovery Framework, Motivation Matrix, The Unsell), pull those details from `context/voice-and-tone.md` before writing — these are the frameworks the script should teach.
 
 ---
 
