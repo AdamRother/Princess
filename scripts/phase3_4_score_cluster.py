@@ -10,11 +10,8 @@ from __future__ import annotations
 
 import argparse
 import math
-import os
 import re
 import statistics
-import subprocess
-import tempfile
 from datetime import datetime
 
 from utils.config import Config, load_config, get_setting
@@ -92,54 +89,18 @@ def _is_english(title: str) -> bool:
     return ascii_chars / len(title) >= 0.75
 
 
-def _parse_vtt(vtt_text: str) -> str:
-    """Strip VTT metadata and timestamps; return clean plain text."""
-    lines = vtt_text.split("\n")
-    text_lines = []
-    for line in lines:
-        line = line.strip()
-        if not line:
-            continue
-        if line.startswith(("WEBVTT", "Kind:", "Language:", "NOTE")):
-            continue
-        if "-->" in line:
-            continue
-        if re.match(r"^\d+$", line):
-            continue
-        line = re.sub(r"<[^>]+>", "", line)
-        if line:
-            text_lines.append(line)
-    deduped = []
-    for line in text_lines:
-        if not deduped or line != deduped[-1]:
-            deduped.append(line)
-    return " ".join(deduped)
-
-
 def _fetch_transcript(video_id: str) -> str | None:
-    """Fetch auto-generated transcript via yt-dlp. Returns plain text or None."""
+    """
+    Fetch transcript via youtube-transcript-api (hits YouTube's internal caption
+    endpoint — faster and more reliable than yt-dlp for this purpose).
+    Returns plain text or None if no captions available.
+    """
     try:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            subprocess.run(
-                [
-                    "yt-dlp",
-                    "--write-auto-sub",
-                    "--sub-lang", "en",
-                    "--sub-format", "vtt",
-                    "--skip-download",
-                    "--no-warnings",
-                    "--quiet",
-                    "-o", os.path.join(tmpdir, "%(id)s.%(ext)s"),
-                    f"https://www.youtube.com/watch?v={video_id}",
-                ],
-                capture_output=True, text=True, timeout=45,
-            )
-            vtt_path = os.path.join(tmpdir, f"{video_id}.en.vtt")
-            if not os.path.exists(vtt_path):
-                return None
-            with open(vtt_path, encoding="utf-8") as f:
-                text = _parse_vtt(f.read())
-            return text or None
+        from youtube_transcript_api import YouTubeTranscriptApi
+        api = YouTubeTranscriptApi()
+        transcript = api.fetch(video_id)
+        text = " ".join(s.text.replace("\n", " ") for s in transcript.snippets)
+        return text.strip() or None
     except Exception:
         return None
 
