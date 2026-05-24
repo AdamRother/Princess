@@ -8,7 +8,6 @@ config/secrets.yaml
 # output/raw/videos/ is intentionally tracked — committed cache travels
 # with the repo so any machine can do an incremental run instead of full scrape.
 output/raw/channels/
-output/raw/transcripts/
 output/runs/
 output/transcripts/
 output/current_script.md
