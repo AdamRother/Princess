@@ -47,7 +47,7 @@ When I say "let's run the research" or `/research`:
 When I reply with a row number after `/research` completes:
 
 1. Pull that row's data from the Google Sheet (topic, source video URL, suggested title, etc.)
-2. Pull the top 3–5 reference video transcripts on that topic via `yt-dlp` (see `references/methodology/script-writing-pipeline.md`)
+2. Read the source video transcript from `output/raw/transcripts/{video_id}.txt` and model the script structure from it — how it opens, what teaching method it uses, where the core insight lands, how it closes. Fall back to `yt-dlp` only if no local transcript exists (see `references/methodology/script-writing-pipeline.md`)
 3. Load my voice/stories/tone from `context/`
 4. Generate full long-form script (target 10–60 min, default 30 min ≈ 4,500 words)
 5. Generate YouTube metadata (5 title variants, SEO description with chapter timestamps, tags, thumbnail brief)

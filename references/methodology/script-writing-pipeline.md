@@ -31,20 +31,45 @@ Before writing, identify which angle lens the script uses. Each source topic can
 
 ---
 
-## Reference transcript fetching
+## Reference transcript sourcing (PRIMARY: local cache)
 
-Command used for each reference URL:
+Every research run saves a transcript per candidate video at `output/raw/transcripts/{video_id}.txt`. **Always read this file first.** It is the structural blueprint for the script.
+
+From the transcript, extract:
+- **Hook type** — how the source video opens (social proof, confrontation, scenario, result-first)
+- **Teaching structure** — named framework with steps, micro-skills list, live demo, story sequence, or comparison
+- **Pacing** — where pauses land, how sections transition, how long each beat runs
+- **Live demonstration** — if the source video demos something in real-time, build an equivalent in Princess's script
+- **Core insight position** — where the single most important idea lands
+- **Close structure** — personal story, identity reframe, challenge, or direct CTA
+
+**Model the script on this structure.** The source video proved this structure converts with this audience.
+
+**Fallback — yt-dlp (only if no local transcript exists):**
 ```
 yt-dlp --write-auto-sub --sub-lang en --sub-format vtt --skip-download
         --print "%(title)s\t%(uploader)s" --output {tmpdir}/%(id)s {url}
 ```
-
 Parse the VTT output: strip timestamps, deduplicate lines, join into plain text.
-Store to output/raw/transcripts/{video_id}.txt for caching.
+Store to `output/raw/transcripts/{video_id}.txt` for caching.
+
+If no transcript is available via either method, fall back to the 7-part structure below.
 
 ---
 
-## Script structure (what Claude is instructed to write)
+## Script structure
+
+### When a source transcript IS available (primary case)
+
+Mirror the source video's structure — adapted to Princess's voice, her Pain Discovery Framework, and her stories. The source video structure is not optional scaffolding; it's the proven architecture for that topic and audience.
+
+Key principle: the script should feel like the same video, made by her, for her audience — not a generic sales coaching video that happens to cover the same topic.
+
+---
+
+### When NO transcript is available (fallback only)
+
+Use the PASTOR + 7-part retention framework below.
 
 ### Macro structure: PASTOR arc
 - **P** — Problem: name the specific familiar pain

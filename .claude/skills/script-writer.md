@@ -25,23 +25,42 @@ Ask: "Which angle are you going with, or should I pick the strongest one?"
 
 ---
 
-### 2. Research the topic
+### 2. Research and model the source transcript (PRIMARY structural driver)
 
-Before writing, do targeted research:
+**The scraped transcript IS the structural blueprint.** Do not use a generic template — model the actual video.
 
-1. **Read the local transcript file first.** Each research run saves a transcript per candidate video at `output/raw/transcripts/{video_id}.txt` — where `{video_id}` is the `v=` parameter from the source URL (e.g. URL `?v=DrE9HdnMDJs` → file `output/raw/transcripts/DrE9HdnMDJs.txt`). Read this file if it exists. This is how you understand the structure, pacing, and framing of the source video so you can model it — not copy it.
+#### Step A — Read the source transcript
 
-2. **If no local transcript exists**, try yt-dlp as fallback:
+Each research run saves a transcript per candidate video at `output/raw/transcripts/{video_id}.txt` — where `{video_id}` is the `v=` parameter from the source URL (e.g. URL `?v=DrE9HdnMDJs` → file `output/raw/transcripts/DrE9HdnMDJs.txt`).
+
+**Read this file before writing anything.** Then extract:
+
+| Element | What to identify |
+|---------|-----------------|
+| **Hook type** | How does the video open — social proof clips, direct confrontation, scenario drop, result-first? |
+| **Frame-setting** | How does the speaker address the audience in the first 60 sec? What belief do they challenge? |
+| **Teaching structure** | Does it use a named framework with numbered steps? Micro-skills list? Live demo? Story sequence? |
+| **Pacing pattern** | Short punchy sections or long builds? Where do they pause and let things land? |
+| **Live demonstration** | Does the source video demo something in real-time with a person? If yes, build an equivalent in Princess's script. |
+| **Core insight position** | Where in the video does the single most important idea land — early, middle, or late? |
+| **Close structure** | Does it end with a personal story, an identity reframe, a challenge, or a direct CTA? |
+
+Model the script on THIS structure, adapted to Princess's voice and frameworks. The source video proved this structure works with this audience — don't discard it for a generic template.
+
+#### Step B — If no local transcript exists
+
+Try yt-dlp as fallback:
 ```
 yt-dlp --write-auto-sub --skip-download --sub-lang en -o "output/transcripts/%(id)s" <url>
 ```
-Note: Many videos have no auto-captions — if unavailable, continue without.
+If still unavailable, use the 7-part structure in Step 4 below as fallback only.
 
-3. Use YouTube Data API to pull the video's full description — descriptions often contain framework details and key language.
+The `output/current_script.md` file is the output location for the finished script — it is not a structural template. Only use its structure as reference when no transcript was available for the source video.
 
-4. Search for any public docs, Skool posts, or linked resources in the video description that contain her framework content.
+#### Step C — Supplemental research
 
-5. If the topic maps to one of her named frameworks (Pain Discovery Framework, Motivation Matrix, The Unsell), pull those details from `context/voice-and-tone.md` before writing — these are the frameworks the script should teach.
+- Use YouTube Data API to pull the video's full description — often contains framework names and key language.
+- If the topic maps to one of her named frameworks (Pain Discovery Framework, Motivation Matrix, The Unsell), pull those details from `context/voice-and-tone.md` — these replace or supplement what the source video teaches.
 
 ---
 
@@ -61,9 +80,13 @@ If any file is empty, flag it: "Your [file] is empty — script will be generic 
 
 **Target length:** 30 minutes default (≈4,500 words). Range: 10–60 min.
 
+**Primary structure source: the scraped transcript (Step 2A).** Identify the source video's actual structure — how it opens, what teaching method it uses, where the core insight lands, how it closes — and mirror that. Do not default to the 7-part template below when a transcript exists.
+
+**7-part structure below = fallback only.** Use it when no transcript was available for the source video.
+
 ---
 
-#### THE 7-PART STRUCTURE (follow exactly in this order)
+#### 7-PART FALLBACK STRUCTURE (use only when no source transcript is available)
 
 **PART 1 — HOOK (0–8 sec)**
 
@@ -223,6 +246,8 @@ Return the Doc URL to the user.
 ## Quality check before submitting
 
 Before returning the URL, verify:
+- [ ] **If transcript existed:** the script structure mirrors the source video's actual structure (hook type, teaching method, live demo if present, insight position, close style) — not a generic 7-part template
+- [ ] **If no transcript:** 7-part fallback structure is used and labeled as such in the script header
 - [ ] No placeholders left in the script (`[YOUR STORY]`, `[INSERT]`, `[FILL IN]`)
 - [ ] At least 2 real stories from stories-bank.md are woven in
 - [ ] All open loops from Part 4 are closed in Part 5
